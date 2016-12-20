@@ -18,6 +18,7 @@ import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Toast;
 
@@ -36,7 +37,7 @@ import java.util.Calendar;
  */
 public class PublicFunction {
     /**
-     *
+     * show a short toast
      * @param activity
      * @param str
      */
@@ -75,28 +76,12 @@ public class PublicFunction {
         return output;
     }
 
-    public interface OnClickCancelListener {
-        void onClickCancelDo();// 接口中定义一个方法
-    }
-
-
-
-    public static long getMinTimeOfMonth(long time) {
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(time);
-        calendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH),
-                1, 0, 0, 0);
-        return calendar.getTimeInMillis();
-    }
-
-    public static long getMaxTimeOfMonth(long time) {
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(time);
-        calendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH),
-                calendar.getActualMaximum(Calendar.DAY_OF_MONTH), 23, 59, 59);
-        return calendar.getTimeInMillis();
-    }
-
+    /**
+     * Get text from asset file
+     * @param context
+     * @param filename
+     * @return
+     */
     public static String getTextFromAsset(Context context ,String filename) {
         InputStream mInputStream = null;
         String resultString = "";
@@ -125,6 +110,11 @@ public class PublicFunction {
         return resultString;
     }
 
+    /**
+     * set view background
+     * @param v
+     * @param d
+     */
     @SuppressLint("NewApi")
     public static void setBackground(View v, Drawable d) {
         int sdk = android.os.Build.VERSION.SDK_INT;
@@ -135,25 +125,35 @@ public class PublicFunction {
         }
     }
 
+    /**
+     * Get text from a file
+     * @param filePath
+     * @return
+     */
     public static String readTextFromFilePath(String filePath) {
-        StringBuffer sb = new StringBuffer();
-        File file = new File(filePath);
-        try {
-            FileInputStream fis = new FileInputStream(file);
-            int c;
-            while ((c = fis.read()) != -1) {
-                sb.append((char) c);
-            }
-            fis.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (TextUtils.isEmpty(filePath)){
+            LogUtils.e("readTextFromFilePath  filePath is null");
+            return null;
         }
-        return sb.toString();
+        return readTextFromFilePath(new File(filePath));
     }
 
+    /**
+     * Get text from a file
+     * @param file
+     * @return
+     */
     public static String readTextFromFilePath(File file) {
+        if (file == null){
+            LogUtils.e("readTextFromFilePath  file is null");
+            return null;
+        } else if (!file.exists()){
+            LogUtils.e("readTextFromFilePath  file isn't exists");
+            return null;
+        } else if (file.isDirectory()){
+            LogUtils.e("readTextFromFilePath  file is a directory");
+            return null;
+        }
         StringBuffer sb = new StringBuffer();
         try {
             FileInputStream fis = new FileInputStream(file);
@@ -162,22 +162,22 @@ public class PublicFunction {
                 sb.append((char) c);
             }
             fis.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
         return sb.toString();
     }
 
-    public static void write(String filePath ,String content) {
+    /**
+     * Write content to a file
+     * @param filePath
+     * @param content
+     */
+    public static void writeToFile(String filePath ,String content) {
         try {
             File targetFile = new File(filePath);
-            //以指定文件创建RandomAccessFile对象
             RandomAccessFile raf = new RandomAccessFile(targetFile, "rw");
-            //将文件记录指针移动到最后
             raf.seek(targetFile.length());
-            //输出文件内容
             raf.write(content.getBytes());
             raf.close();
         } catch (Exception e) {
@@ -185,12 +185,22 @@ public class PublicFunction {
         }
     }
 
+    /**
+     * Copy a text to clip.
+     * @param context
+     * @param charSequence
+     */
     public static void copyText(Context context,CharSequence charSequence){
         ClipboardManager copy = (ClipboardManager) context.
                 getSystemService(Context.CLIPBOARD_SERVICE);
         copy.setPrimaryClip(ClipData.newPlainText(null, charSequence));
     }
 
+    /**
+     * Check a color is dark color
+     * @param color
+     * @return true: dark color ;   false: light color
+     */
     public boolean isColorDark(int color) {
         double darkness = 1 - (0.299 * Color.red(color) + 0.587 * Color.green(color) + 0.114 * Color.blue(color)) / 255;
         return darkness >= 0.5;

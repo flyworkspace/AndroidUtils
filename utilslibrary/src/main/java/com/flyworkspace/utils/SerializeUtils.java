@@ -10,6 +10,12 @@ import java.io.ObjectOutputStream;
  * Created by flyworkspace on 2016/4/9.
  */
 public class SerializeUtils {
+    /**
+     * Object to serialize
+     * @param o
+     * @return
+     * @throws Exception
+     */
     public static String writeObject(Object o) throws Exception {
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         ObjectOutputStream oos = new ObjectOutputStream(bos);
@@ -20,8 +26,12 @@ public class SerializeUtils {
         return new String(bos.toByteArray(), "ISO-8859-1");
     }
 
-    //反序列化String字符串为对象
-
+    /**
+     * Serialize to object
+     * @param object
+     * @return
+     * @throws Exception
+     */
     public static Object readObject(String object) throws Exception{
         ByteArrayInputStream bis = new ByteArrayInputStream(object.getBytes("ISO-8859-1"));
         ObjectInputStream ois = new ObjectInputStream(bis);

@@ -68,62 +68,108 @@ public class TimeFormatter {
      * @param date
      * @return ep: 2015-05-14
      */
-    public static String getYearMonthDayForSql(Date date) {
+    public static String getYearMonthDay(Date date) {
         SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
         return sf.format(date);
     }
 
     /**
-     * Get
+     * Get [YEAR]-[MONTH]-[DAY]
      * @param millisecond
-     * @return
+     * @return ep: 2015-05-14
      */
     public static String formatDateYYYYMMDD(long millisecond) {
         return (String) android.text.format.DateFormat.format("yyyy-MM-dd",
                 millisecond);
     }
 
+    /**
+     * Get [YEAR]  [MONTH]  [DAY]
+     * @param millisecond
+     * @return
+     */
     public static String formatDateYYYYMMMDD(long millisecond) {
         return (String) android.text.format.DateFormat.format("yyyy  MMM  dd",
                 millisecond);
     }
 
+
+    /**
+     * Get [YEAR]-[MONTH]
+     * @param millisecond
+     * @return
+     */
     public static String formatDateYYYYMM(long millisecond) {
         return (String) android.text.format.DateFormat.format("yyyy-MMM",
                 millisecond);
     }
 
+    /**
+     * Get [hour]:[minute][a]
+     * @param millisecond
+     * @return
+     */
     public static String formatDateHHMM(long millisecond) {
         return (String) android.text.format.DateFormat.format("hh:mm a",
                 millisecond);
     }
 
+    /**
+     * Get [YEAR]
+     * @param millisecond
+     * @return
+     */
     public static String formatDateYYYY(long millisecond) {
         return (String) android.text.format.DateFormat.format("yyyy",
                 millisecond);
     }
 
+    /**
+     * Get [MONTH]
+     * @param millisecond
+     * @return
+     */
     public static String formatDateMMM(long millisecond) {
         return (String) android.text.format.DateFormat.format("MMM",
                 millisecond);
     }
 
+    /**
+     * Get [DAY]
+     * @param millisecond
+     * @return
+     */
     public static String formatDateDD(long millisecond) {
         return (String) android.text.format.DateFormat
                 .format("dd", millisecond);
     }
 
+    /**
+     * Get [WEEK]
+     * @param millisecond
+     * @return
+     */
     public static String formatDateWeek(long millisecond) {
         return (String) android.text.format.DateFormat.format("EEE",
                 millisecond);
     }
 
+    /**
+     * Get [YEAR]  [MONTH]  [DAY]  [WEEK]  [hour]:[minute][a]
+     * @param millisecond
+     * @return
+     */
     public static String formatDateYYYYMMMDDEEEHHMM(long millisecond) {
         return formatDateYYYYMMMDD(millisecond) + "  "
                 + formatDateWeek(millisecond) + "  "
                 + formatDateHHMM(millisecond);
     }
 
+    /**
+     * Get min time in a month .ep: 2004-10-04  19:29:30  --->  2004-10-01  00:00:00
+     * @param time
+     * @return
+     */
     public static long getMinTimeOfMonth(long time) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(time);
@@ -132,21 +178,16 @@ public class TimeFormatter {
         return calendar.getTimeInMillis();
     }
 
+    /**
+     * Get max time in a month .ep: 2004-10-04  19:29:30  --->  2004-10-31  23:59:59
+     * @param time
+     * @return
+     */
     public static long getMaxTimeOfMonth(long time) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(time);
         calendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH),
                 calendar.getActualMaximum(Calendar.DAY_OF_MONTH), 23, 59, 59);
         return calendar.getTimeInMillis();
-    }
-
-    public static String formatSourceName(long miliSeconds) {
-        return (String) android.text.format.DateFormat.format(
-                "yyyyMMdd_HHmmss", miliSeconds);
-    }
-
-    public static boolean isBetweenInTimes(long startTime, long endTime,
-                                           long time) {
-        return time >= startTime && time <= endTime;
     }
 }

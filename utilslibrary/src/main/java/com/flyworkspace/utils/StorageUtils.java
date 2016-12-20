@@ -11,7 +11,11 @@ import java.math.BigDecimal;
  * Created by jinpengfei on 15-6-11.
  */
 public class StorageUtils {
-
+    /**
+     * Get cache file
+     * @param context
+     * @return
+     */
     public static File cachedDir(Context context) {
         File cacheDir = context.getCacheDir();
         if((Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())) || !Environment.isExternalStorageRemovable()) {
@@ -24,18 +28,8 @@ public class StorageUtils {
         return cacheDir;
     }
 
-    public static File httpCachedDir(Context context) {
-        File httpCacheDir = new File(StorageUtils.cachedDir(context),"http");
-        if(!httpCacheDir.exists())
-        {
-            httpCacheDir.mkdir();
-        }
-
-        return httpCacheDir;
-    }
-
     /**
-     * * 清除本应用内部缓存(/data/data/com.xxx.xxx/cache) * *
+     * Clean internal cache(/data/data/com.xxx.xxx/cache) * *
      *
      * @param context
      */
@@ -44,7 +38,7 @@ public class StorageUtils {
     }
 
     /**
-     * * 清除外部cache下的内容(/mnt/sdcard/android/data/com.xxx.xxx/cache)
+     * Clean external cache(/mnt/sdcard/android/data/com.xxx.xxx/cache)
      *
      * @param context
      */
@@ -56,7 +50,7 @@ public class StorageUtils {
     }
 
     /**
-     * 删除方法 这里只会删除某个文件夹下的文件，如果传入的directory是个文件，将不做处理 * *
+     * Delete file in a directory
      *
      * @param directory
      */
@@ -68,15 +62,17 @@ public class StorageUtils {
         }
     }
 
-    // 获取文件
-    //Context.getExternalFilesDir() --> SDCard/Android/data/你的应用的包名/files/ 目录，一般放一些长时间保存的数据
-    //Context.getExternalCacheDir() --> SDCard/Android/data/你的应用包名/cache/目录，一般存放临时缓存数据
+    /**
+     * Get floder size
+     * @param file
+     * @return
+     * @throws Exception
+     */
     public static long getFolderSize(File file) throws Exception {
         long size = 0;
         try {
             File[] fileList = file.listFiles();
             for (int i = 0; i < fileList.length; i++) {
-                // 如果下面还有文件
                 if (fileList[i].isDirectory()) {
                     size = size + getFolderSize(fileList[i]);
                 } else {
@@ -90,7 +86,7 @@ public class StorageUtils {
     }
 
     /**
-     * 格式化单位
+     * Format storage unit
      *
      * @param size
      * @return
@@ -127,9 +123,9 @@ public class StorageUtils {
     }
 
     /**
-     * 删除指定目录下文件及目录
+     * Delete file in a path
      *
-     * @param deleteThisPath
+     * @param deleteThisPath delete path
      * @param filePath
      * @return
      */
@@ -137,23 +133,22 @@ public class StorageUtils {
         if (!TextUtils.isEmpty(filePath)) {
             try {
                 File file = new File(filePath);
-                if (file.isDirectory()) {// 如果下面还有文件
+                if (file.isDirectory()) {
                     File files[] = file.listFiles();
                     for (int i = 0; i < files.length; i++) {
                         deleteFolderFile(files[i].getAbsolutePath(), true);
                     }
                 }
                 if (deleteThisPath) {
-                    if (!file.isDirectory()) {// 如果是文件，删除
+                    if (!file.isDirectory()) {
                         file.delete();
                     } else {// 目录
-                        if (file.listFiles().length == 0) {// 目录下没有文件或者目录，删除
+                        if (file.listFiles().length == 0) {
                             file.delete();
                         }
                     }
                 }
             } catch (Exception e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         }
