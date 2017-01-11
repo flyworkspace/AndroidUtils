@@ -19,6 +19,7 @@ def projectVersionName = android.defaultConfig.versionName
 def projectPackaging = properties.getProperty("project.packaging")
 def projectSiteUrl = properties.getProperty("project.siteUrl")
 def projectGitUrl = properties.getProperty("project.gitUrl")
+def projectDescription = properties.getProperty("project.description")
 
 def developerId = properties.getProperty("developer.id")
 def developerName = properties.getProperty("developer.name")
@@ -30,6 +31,9 @@ def bintrayOrganizationId = properties.getProperty("bintray.organizationId");
 
 def javadocName = properties.getProperty("javadoc.name")
 
+def bintrayGpgPassword = properties.getProperty("bintray.gpg.password")
+def bintrayOssUser = properties.getProperty("bintray.oss.user")
+def bintrayOssPassword = properties.getProperty("bintray.oss.password")
 
 group = projectGroupId
 
@@ -43,6 +47,7 @@ install {
                 version projectVersionName
                 packaging projectPackaging
                 url projectSiteUrl
+                description = projectDescription
                 licenses {
                     license {
                         name 'The Apache Software License, Version 2.0'
@@ -108,6 +113,18 @@ bintray {
         websiteUrl = projectSiteUrl
         vcsUrl = projectGitUrl
         licenses = ["Apache-2.0"]
-        publish = false
+        publish = true
+        version {
+            gpg {
+                sign = true
+                passphrase = bintrayGpgPassword
+            }
+            mavenCentralSync {
+                sync = true
+                user = bintrayOssUser
+                password = bintrayOssPassword
+                close = '1'
+            }
+        }
     }
 }
