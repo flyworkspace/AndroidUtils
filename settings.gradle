@@ -1,1 +1,4 @@
-include ':app', ':utilslibrary'
+include ':demo'
+include ':AndroidUtils'
+project(':AndroidUtils').projectDir = new File('library')
+//rootProject.name = 'library'

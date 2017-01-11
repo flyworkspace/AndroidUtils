@@ -127,7 +127,6 @@ public class StorageUtils {
      *
      * @param deleteThisPath delete path
      * @param filePath
-     * @return
      */
     public static void deleteFolderFile(String filePath, boolean deleteThisPath) {
         if (!TextUtils.isEmpty(filePath)) {

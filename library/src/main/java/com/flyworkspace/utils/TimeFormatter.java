@@ -166,7 +166,7 @@ public class TimeFormatter {
     }
 
     /**
-     * Get min time in a month .ep: 2004-10-04  19:29:30  --->  2004-10-01  00:00:00
+     * Get min time in a month .ep: 2004-10-04  19:29:30  ----  2004-10-01  00:00:00
      * @param time
      * @return
      */
@@ -179,7 +179,7 @@ public class TimeFormatter {
     }
 
     /**
-     * Get max time in a month .ep: 2004-10-04  19:29:30  --->  2004-10-31  23:59:59
+     * Get max time in a month .ep: 2004-10-04  19:29:30  ----  2004-10-31  23:59:59
      * @param time
      * @return
      */
