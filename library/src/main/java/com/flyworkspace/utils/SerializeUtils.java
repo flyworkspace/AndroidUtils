@@ -12,8 +12,8 @@ import java.io.ObjectOutputStream;
 public class SerializeUtils {
     /**
      * Object to serialize
-     * @param o
-     * @return
+     * @param o object
+     * @return String
      * @throws Exception
      */
     public static String writeObject(Object o) throws Exception {
@@ -28,8 +28,8 @@ public class SerializeUtils {
 
     /**
      * Serialize to object
-     * @param object
-     * @return
+     * @param object object
+     * @return Object
      * @throws Exception
      */
     public static Object readObject(String object) throws Exception{

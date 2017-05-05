@@ -16,7 +16,7 @@ public class DensityUtils {
     /**
      * dp2px
      *
-     * @param context
+     * @param context context
      * @param dpVal  origin dp value
      * @return
      */
@@ -28,7 +28,7 @@ public class DensityUtils {
     /**
      * sp2px
      *
-     * @param context
+     * @param context context
      * @param spVal  origin sp value
      * @return
      */
@@ -40,7 +40,7 @@ public class DensityUtils {
     /**
      * px2dp
      *
-     * @param context
+     * @param context context
      * @param pxVal  origin px value
      * @return
      */
@@ -52,7 +52,7 @@ public class DensityUtils {
     /**
      * px2sp
      *
-     * @param context
+     * @param context context
      * @param pxVal  origin px value
      * @return
      */

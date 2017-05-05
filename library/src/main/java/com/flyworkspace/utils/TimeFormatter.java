@@ -11,7 +11,7 @@ public class TimeFormatter {
     /**
      * Get [YEAR] of date
      *
-     * @param date
+     * @param date date
      * @return ep:2015
      */
     public static String getYearFormat(Date date) {
@@ -22,7 +22,7 @@ public class TimeFormatter {
     /**
      * Get [MONTH] of date
      *
-     * @param date
+     * @param date date
      * @return ep: 11
      */
     public static String getMonthFormat(Date date) {
@@ -33,7 +33,7 @@ public class TimeFormatter {
     /**
      * Get [DAY] of date
      *
-     * @param date
+     * @param date date
      * @return ep:24
      */
     public static String getDayFormat(Date date) {
@@ -44,7 +44,7 @@ public class TimeFormatter {
     /**
      * Get [WEEk] of date
      *
-     * @param date
+     * @param date date
      * @return ep MONDAY
      */
     public static String getWeekFormat(Date date) {
@@ -55,8 +55,8 @@ public class TimeFormatter {
     /**
      * Get [MONTH]-[DAY] of date
      *
-     * @param context
-     * @param date
+     * @param context context
+     * @param date date
      * @return
      */
     public static String getMonthDay(Context context, Date date) {
@@ -65,7 +65,7 @@ public class TimeFormatter {
 
     /**
      * Get [YEAR]-[MONTH]-[DAY]
-     * @param date
+     * @param date date
      * @return ep: 2015-05-14
      */
     public static String getYearMonthDay(Date date) {
@@ -75,7 +75,7 @@ public class TimeFormatter {
 
     /**
      * Get [YEAR]-[MONTH]-[DAY]
-     * @param millisecond
+     * @param millisecond millisecond
      * @return ep: 2015-05-14
      */
     public static String formatDateYYYYMMDD(long millisecond) {
@@ -86,7 +86,7 @@ public class TimeFormatter {
     /**
      * Get [YEAR]  [MONTH]  [DAY]
      * @param millisecond
-     * @return
+     * @return format string
      */
     public static String formatDateYYYYMMMDD(long millisecond) {
         return (String) android.text.format.DateFormat.format("yyyy  MMM  dd",
@@ -96,8 +96,8 @@ public class TimeFormatter {
 
     /**
      * Get [YEAR]-[MONTH]
-     * @param millisecond
-     * @return
+     * @param millisecond millisecond
+     * @return format string
      */
     public static String formatDateYYYYMM(long millisecond) {
         return (String) android.text.format.DateFormat.format("yyyy-MMM",
@@ -106,8 +106,8 @@ public class TimeFormatter {
 
     /**
      * Get [hour]:[minute][a]
-     * @param millisecond
-     * @return
+     * @param millisecond millisecond
+     * @return format string
      */
     public static String formatDateHHMM(long millisecond) {
         return (String) android.text.format.DateFormat.format("hh:mm a",
@@ -116,8 +116,8 @@ public class TimeFormatter {
 
     /**
      * Get [YEAR]
-     * @param millisecond
-     * @return
+     * @param millisecond millisecond
+     * @return format string
      */
     public static String formatDateYYYY(long millisecond) {
         return (String) android.text.format.DateFormat.format("yyyy",
@@ -126,8 +126,8 @@ public class TimeFormatter {
 
     /**
      * Get [MONTH]
-     * @param millisecond
-     * @return
+     * @param millisecond millisecond
+     * @return format string
      */
     public static String formatDateMMM(long millisecond) {
         return (String) android.text.format.DateFormat.format("MMM",
@@ -136,8 +136,8 @@ public class TimeFormatter {
 
     /**
      * Get [DAY]
-     * @param millisecond
-     * @return
+     * @param millisecond millisecond
+     * @return format string
      */
     public static String formatDateDD(long millisecond) {
         return (String) android.text.format.DateFormat
@@ -146,8 +146,8 @@ public class TimeFormatter {
 
     /**
      * Get [WEEK]
-     * @param millisecond
-     * @return
+     * @param millisecond millisecond
+     * @return format string
      */
     public static String formatDateWeek(long millisecond) {
         return (String) android.text.format.DateFormat.format("EEE",
@@ -156,8 +156,8 @@ public class TimeFormatter {
 
     /**
      * Get [YEAR]  [MONTH]  [DAY]  [WEEK]  [hour]:[minute][a]
-     * @param millisecond
-     * @return
+     * @param millisecond millisecond
+     * @return format string
      */
     public static String formatDateYYYYMMMDDEEEHHMM(long millisecond) {
         return formatDateYYYYMMMDD(millisecond) + "  "
@@ -167,8 +167,8 @@ public class TimeFormatter {
 
     /**
      * Get min time in a month .ep: 2004-10-04  19:29:30  ----  2004-10-01  00:00:00
-     * @param time
-     * @return
+     * @param time time
+     * @return min time of month
      */
     public static long getMinTimeOfMonth(long time) {
         Calendar calendar = Calendar.getInstance();
@@ -180,8 +180,8 @@ public class TimeFormatter {
 
     /**
      * Get max time in a month .ep: 2004-10-04  19:29:30  ----  2004-10-31  23:59:59
-     * @param time
-     * @return
+     * @param time time
+     * @return max time of month
      */
     public static long getMaxTimeOfMonth(long time) {
         Calendar calendar = Calendar.getInstance();

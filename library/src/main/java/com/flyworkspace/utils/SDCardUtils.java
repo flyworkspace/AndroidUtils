@@ -81,7 +81,7 @@ public class SDCardUtils {
     /**
      * Get system absolute path
      *
-     * @return
+     * @return path
      */
     public static String getRootDirectoryPath() {
         return Environment.getRootDirectory().getAbsolutePath();

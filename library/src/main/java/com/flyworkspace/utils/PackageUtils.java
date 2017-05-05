@@ -19,7 +19,7 @@ public class PackageUtils {
 
     /**
      * Get application version code
-     * @param context
+     * @param context context
      * @return
      */
     public static int getVersionCode(Context context) {
@@ -34,7 +34,7 @@ public class PackageUtils {
 
     /**
      * Get application version name
-     * @param context
+     * @param context context
      * @return ep:1.2.1
      */
     public static String getVersionName(Context context) {
@@ -49,7 +49,7 @@ public class PackageUtils {
 
     /**
      * Get application is installed
-     * @param context
+     * @param context context
      * @param packageName target package name of application
      * @return  true:the application is installed  ,else false;
      */

@@ -13,7 +13,7 @@ import java.math.BigDecimal;
 public class StorageUtils {
     /**
      * Get cache file
-     * @param context
+     * @param context context
      * @return
      */
     public static File cachedDir(Context context) {
@@ -31,7 +31,7 @@ public class StorageUtils {
     /**
      * Clean internal cache(/data/data/com.xxx.xxx/cache) * *
      *
-     * @param context
+     * @param context context
      */
     public static void cleanInternalCache(Context context) {
         deleteFilesByDirectory(context.getCacheDir());
@@ -40,7 +40,7 @@ public class StorageUtils {
     /**
      * Clean external cache(/mnt/sdcard/android/data/com.xxx.xxx/cache)
      *
-     * @param context
+     * @param context context
      */
     public static void cleanExternalCache(Context context) {
         if (Environment.getExternalStorageState().equals(
@@ -52,7 +52,7 @@ public class StorageUtils {
     /**
      * Delete file in a directory
      *
-     * @param directory
+     * @param directory directory
      */
     private static void deleteFilesByDirectory(File directory) {
         if (directory != null && directory.exists() && directory.isDirectory()) {
@@ -64,8 +64,8 @@ public class StorageUtils {
 
     /**
      * Get floder size
-     * @param file
-     * @return
+     * @param file file
+     * @return size
      * @throws Exception
      */
     public static long getFolderSize(File file) throws Exception {
@@ -88,8 +88,8 @@ public class StorageUtils {
     /**
      * Format storage unit
      *
-     * @param size
-     * @return
+     * @param size size
+     * @return size string
      */
     public static String getFormatSize(double size) {
         double kiloByte = size / 1024;
@@ -126,7 +126,7 @@ public class StorageUtils {
      * Delete file in a path
      *
      * @param deleteThisPath delete path
-     * @param filePath
+     * @param filePath filePath
      */
     public static void deleteFolderFile(String filePath, boolean deleteThisPath) {
         if (!TextUtils.isEmpty(filePath)) {

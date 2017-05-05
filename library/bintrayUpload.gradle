@@ -41,6 +41,7 @@ install {
     repositories.mavenInstaller {
         pom {
             project {
+                packaging 'jar'
                 name projectName
                 groupId projectGroupId
                 artifactId projectArtifactId
@@ -67,7 +68,7 @@ install {
                     url projectSiteUrl
                 }
             }
-        }
+        }.writeTo("$buildDir/poms/pom-default.xml")
     }
 }
 

@@ -18,7 +18,7 @@ public class NetWorkUtils {
                 .getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo mNetworkInfo = connectivityManager.getActiveNetworkInfo();
         if (mNetworkInfo != null) {
-            return mNetworkInfo.isAvailable();
+            return mNetworkInfo.isConnected();
         }
         return false;
     }
@@ -35,7 +35,7 @@ public class NetWorkUtils {
         NetworkInfo mWiFiNetworkInfo = connectivityManager
                 .getNetworkInfo(ConnectivityManager.TYPE_WIFI);
         if (mWiFiNetworkInfo != null) {
-            return mWiFiNetworkInfo.isAvailable();
+            return mWiFiNetworkInfo.isConnected();
         }
         return false;
     }
@@ -50,7 +50,7 @@ public class NetWorkUtils {
         NetworkInfo mMobileNetworkInfo = connectivityManager
                 .getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
         if (mMobileNetworkInfo != null) {
-            return mMobileNetworkInfo.isAvailable();
+            return mMobileNetworkInfo.isConnected();
         }
         return false;
     }
